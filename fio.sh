@@ -12,5 +12,8 @@
 echo SLURMD_NODENAME: $SLURMD_NODENAME
 echo SLURM_NODELIST: $SLURM_NODELIST
 
+FIO_FILE=/home/centos/fiotest.dat
+
+rm $FIO_FILE
 sudo yum install -y fio
-fio --output-format=json+ --rw=randrw --rwmixread=75 --randrepeat=1 --bs=64k --numjobs=4 --iodepth=64 --ioengine=libaio --direct=1 --invalidate=1 --fsync_on_close=1 --randrepeat=1 --norandommap --exitall --name=$SLURM_JOB_NAME --filename=/home/centos/fiotest.dat --size=4G
+fio --output-format=json+ --rw=randrw --rwmixread=75 --randrepeat=1 --bs=64k --numjobs=4 --iodepth=64 --ioengine=libaio --direct=1 --invalidate=1 --fsync_on_close=1 --randrepeat=1 --norandommap --exitall --name=$SLURM_JOB_NAME --filename=$FIO_FILE --size=4G
